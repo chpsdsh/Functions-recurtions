@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <math.h>
+
+
+int kvadrat(int a){
+    if(pow((int)sqrt(a),2) == a)
+            return 1;
+    return 0;
+}
+
+
+int main() {
+    int *a, n, cnt=0;
+    scanf_s("%d" ,&n);
+    a=(int*)malloc(n*sizeof(int));
+
+    for(int i=0; i<n; i++)
+        scanf_s("%d",a+i);
+    
+    for(int i=0; i<n; i++){
+        if (kvadrat(*(a + i)) == 1)
+            cnt++;
+    }
+    printf("%d", cnt);
+    return 0;
+}
