@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <malloc.h>
+
+int maxx(int *a, int size) {
+    int max = size - 1;
+
+    if ( size == 1 ) {
+        return a[max];
+    }
+    if ( a[max] > a[max-1] ) {
+        int temp = a[max];
+
+        a[max] = a[max-1];
+        a[max-1] = temp;
+    }
+    return maxx(a, size-1);
+}
+
+
+int main() {
+    int n,*a;
+    a=(int*)(malloc(n*sizeof(int)));
+    scanf_s("%d",&n);
+    
+    for(int i = 0; i < n; i++)
+        scanf_s("%d", a + i);
+    
+    printf("%d", maxx(a,n));
+
+    return 0;
+}
