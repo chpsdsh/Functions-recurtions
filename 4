@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <malloc.h>
+
+
+int chetn(int a){
+    if(a % 2 == 0)
+        return 1;
+    else
+        return 0;
+}
+
+int main() {
+    int *a, n, mxl = 0, cnt = 0;
+    scanf_s("%d", &n);
+    a = (int*)malloc(n*sizeof(int));
+    
+    for(int i = 0; i < n; i++){
+        scanf_s("%d", a+i);
+    }
+
+    for(int i = 0; i < n; i++){
+        if(chetn(*(a + i)) == 1)
+            cnt = 0;
+        else
+            cnt += 1;
+        if(cnt > mxl)
+            mxl=cnt;
+    }
+
+    printf("%d", mxl);
+    free(a);
+    return 0;
+
+}
