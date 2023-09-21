@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <math.h>
+
+int simmetriya(int start, int end, int *a){
+    while (start <= end)
+        if(*(a+start)==*(a+end))
+            return simmetriya(start+1, end-1, a);
+        else
+            return 0;
+}
+int main() {
+    int *a,n, start, end;
+
+    scanf_s("%d" ,&n);
+    printf("start");
+    scanf_s("%d" ,&start);
+    printf("end");
+    scanf_s("%d" ,&end);
+
+    a=(int*)malloc(n * sizeof(int ));
+
+    for(int i=0; i<n; i++)
+        scanf_s("%d",(a + i));
+
+
+   if(simmetriya(start,end,a)!=0)
+       printf("simmetrichnaya");
+   else
+       printf("ne simmetrichnaya");
+
+    free(a);
+    return 0;
+}
