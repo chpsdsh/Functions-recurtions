@@ -15,17 +15,28 @@ float sTrianle(float a, float b, float c){
 }
 
 int main() {
-    float *x, *y, n, nod;
+    float *x, *y, sX, sY, s, a, b, c;
+    int n;
     scanf_s("%d" ,&n);
-    x=(float*)malloc(n * sizeof(int));
-    y=(float*)malloc(n * sizeof(int));
-    
-    for(int i=0; i<n; i++){
-        scanf_s("%d",x + i);
-        scanf_s("%d",y + i);
+    x=(float*)malloc(n * sizeof(float ));
+    y=(float*)malloc(n * sizeof(float));
+
+    for(int i=0; i<n; i++)
+        scanf_s("%f %f",(x + i),(y+i));
+
+
+
+    sX = *(x);
+    sY = *(y);
+    for(int i = 1; i < n-1; i++){
+        a = dlina(sX,*(x+i),sY, *(y+i));
+        b = dlina(*(x+i),*(x+i+1),*(y+i), *(y+i+1));
+        c = dlina(sX,*(x+i+1),sY, *(y+i+1));
+        s += sTrianle(a,b,c);
     }
+    printf("%f", s);
 
-
-    printf("%d", nod);
+    free(x);
+    free(y);
     return 0;
 }
