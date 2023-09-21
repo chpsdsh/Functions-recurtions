@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <malloc.h>
+
+
+int powt(int x, int *a, int n){
+    int flag = 0;
+    for(int i = 0; i < n; i++){
+        if(*(a + i) == x && flag == 0)
+            flag = 1;
+        else if(*(a + i) == x && flag == 1)
+            flag = -1;
+        }
+
+
+    if (flag == 1)
+        return 1;
+    else
+        return 0;
+
+}
+
+
+int main() {
+    int *a, *b, n;
+    scanf_s("%d", &n);
+    a = (int*) malloc(n*sizeof(int));
+    b= (int*) malloc(n*sizeof(int));
+    for(int i = 0 ; i < n; i++){
+        scanf_s("%d", a+i);
+        *(b+i) = 0;
+    }
+
+
+    for(int i = 0 ; i < n; i++){
+        //printf("%d %d \n", powt(*(a+i), a, n), *(a+i));
+        if (powt(*(a+i), a, n) == 1)
+            *(b+i) =  *(a+i);
+        else
+            printf("%d %d \n", powt(*(a+i), b, n), *(a+i));
+
+
+    }
+
+    for(int i = 0 ; i < n; i++){
+        printf("%d", *(b+i));
+    }
+
+    return 0;
+}
