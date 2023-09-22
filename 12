@@ -1,52 +1,68 @@
 #include <stdio.h>
 #include <malloc.h>
 
-int slozhenie(int *a, int *b, int MxLen) {
-    int *c;
-    
-    c = (int*)malloc((MxLen+1)*sizeof(int));
-    for(int i = 0; i < (MxLen + 1); i++)
-        *(c+i) = 0;
-    for(int i = 0; i < (MxLen); i++){
-        *(c + MxLen - i - 1) = 
+void slozhenie(int *a, int *b, int MxLen) {
+    int res;
+    for (int i = MxLen; i > 0; i--) {
+        res = *(a + i) + *(b + i);
+        if (res > 9) {
+            *(a + i) = res % 10;
+            *(a + i - 1) += res / 10;
+        } else
+            *(a + i) = res % 10;
     }
+    int i;
+    if(*a == 0)
+        i = 1;
+    else
+        i = 0;
+
+    for (i; i < MxLen; i++)
+        printf("%d", *(a+i));
 }
 
 int main() {
-    int n1, n2, *a, *b, MxLen, Nachalo;
+    int n1, n2, *a, *b, MxLen, Nachalo, fl =0;
 
     scanf_s("%d", &n1);
     scanf_s("%d", &n2);
+
     if (n1 >= n2){
-        MxLen = n1;
-        Nachalo = n2 - 1; 
+        MxLen = n1 + 1;
+        Nachalo = n1 - n2 +1;
+        fl = 0;
     }
     else
     {
-        MxLen = n2;
-        Nachalo = n1 - 1;
-    }      
-    a = (int*)(malloc(MxLen * sizeof(int)));
-    b = (int*)(malloc(MxLen * sizeof(int)));
-    for(int i = 0; i < MxLen; i++){
-        scanf_s("%d", a + i);
-        if(i >= Nachalo)
+        MxLen = n2 + 1;
+        Nachalo = n2 - n1 + 1;
+        fl = 1;
+    }
+
+    a=(int*) malloc(MxLen*sizeof (int));
+    b=(int*) malloc(MxLen*sizeof (int));
+    *a = 0;
+    *b = 0;
+    printf("vvod a\n");
+    for(int i = 1; i < MxLen; i++)
+        if(fl == 0)
+            scanf_s("%d", a + i);
+        else if (i >= Nachalo)
+            scanf_s("%d", a + i);
+        else
+            *(a+i) = 0;
+
+    printf("vvod b\n");
+
+    for(int i = 1; i < MxLen; i++)
+        if(fl == 1)
+            scanf_s("%d", b + i);
+        else if (i >= Nachalo)
             scanf_s("%d", b + i);
         else
             *(b+i) = 0;
-    }
-        
 
-    scanf_s("%d", &n2);
-    for(int i = 0; i < n2; i++)
-        scanf_s("%d", b + i);
-
-    if (n1>n2)
-        for(int i = 0; i < n1; i++)
-        printf("%d", (slozhenie(a, n1, b, n2)+i));
-    if (n2>n1)
-        for(int i = 0; i < n2; i++)
-            printf("%d", (slozhenie(a, n1, b, n2)+i));
+    slozhenie(a,b,MxLen);
     free(a);
     free(b);
     return 0;
