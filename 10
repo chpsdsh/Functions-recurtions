@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
-#include <math.h>
+
 
 int simmetriya(int start, int end, int *a){
     while (start <= end)
@@ -24,10 +24,10 @@ int main() {
         scanf_s("%d",(a + i));
 
 
-   if(simmetriya(start,end,a)!=0)
-       printf("simmetrichnaya");
-   else
-       printf("ne simmetrichnaya");
+    if(simmetriya(start,end,a)!=0)
+        printf("simmetrichnaya");
+    else
+        printf("ne simmetrichnaya");
 
     free(a);
     return 0;
