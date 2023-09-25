@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
+
+
 void fill(int **a, int n){
     int nm = 1, sloy;
 
