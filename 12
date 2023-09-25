@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
+
 void slozhenie(int *a, int *b, int MxLen) {
     int res;
     for (int i = MxLen; i > 0; i--) {
