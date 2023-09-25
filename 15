@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <malloc.h>
+
+
+void fill (int *a, int n){
+    int nm = 1, i , top = 0, left = 0 ,right = n - 1 ,bottom =  n - 1;
+    while (left <= right && top <= bottom) {
+        for (int i = left; i <= right; i++)
+            a[top * n + i] = nm++;
+        top++;
+
+        for (int i = top; i <= bottom; i++)
+            a[i * n + right] = nm++;
+        right--;
+
+        if (top <= bottom) {
+            for (int i = right; i >= left; i--)
+                a[bottom * n + i] = nm++;
+            bottom--;
+        }
+
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--)
+                a[i * n + left] = nm++;
+            left++;
+        }
+    }
+    for(i = 0; i < n*n; i++)
+        printf("%d\t",*(a+i));
+}
+int main(){
+    int n, *a;
+    scanf_s("%d", &n);
+    a = (int *)malloc(n*n*sizeof(int));
+
+    fill(a, n);
+
+    free(a);
+    return 0 ;
+}
