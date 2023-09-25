@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
+
 int powt(int x, int *a, int n ){
     int flag = 0;
     for(int i =0; i < n; i++){
@@ -43,6 +44,7 @@ int main() {
         printf("%d\n",*(b+i));
 
     free(a);
+    free(b);
     return 0;
 
 }
