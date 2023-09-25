@@ -4,13 +4,13 @@
 
 int NOD(int a, int b){
     if(a != 0 && b != 0){
-        if(a>b)
-            a=a % b;
+        if(a > b)
+            a = a % b;
         else
             b = b % a;
         NOD(a,b);
     }
-     else
+    else
         return a+b;
 }
 
@@ -28,5 +28,6 @@ int main() {
         nod = NOD(nod,*(a + i));
 
     printf("%d", nod);
+    free(a);
     return 0;
 }
